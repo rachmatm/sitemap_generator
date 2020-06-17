@@ -27,7 +27,19 @@ module SitemapGenerator
         @xml_content = '' # XML urlset content
         @xml_wrapper_start = <<-HTML
           <?xml version="1.0" encoding="UTF-8"?>
-            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <urlset
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+              xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+              xmlns:image="#{SitemapGenerator::SCHEMAS['image']}"
+              xmlns:video="#{SitemapGenerator::SCHEMAS['video']}"
+              xmlns:geo="#{SitemapGenerator::SCHEMAS['geo']}"
+              xmlns:news="#{SitemapGenerator::SCHEMAS['news']}"
+              xmlns:mobile="#{SitemapGenerator::SCHEMAS['mobile']}"
+              xmlns:pagemap="#{SitemapGenerator::SCHEMAS['pagemap']}"
+              xmlns:xhtml="http://www.w3.org/1999/xhtml"
+            >
         HTML
         @xml_wrapper_start.gsub!(/\s+/, ' ').gsub!(/ *> */, '>').strip!
         @xml_wrapper_end   = %q[</urlset>]
